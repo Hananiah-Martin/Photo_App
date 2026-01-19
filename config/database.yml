@@ -26,5 +26,4 @@ production:
   adapter: postgresql
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  # Render automatically provides the DATABASE_URL environment variable
-  url: <%= ENV['DATABASE_URL'] %>
+  url: <%= ENV.fetch("DATABASE_URL") %>
