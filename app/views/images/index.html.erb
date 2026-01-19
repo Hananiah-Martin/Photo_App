@@ -1,0 +1,47 @@
+<div class="container mt-5">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="fw-bold">My Gallery</h2>
+    <%= link_to new_image_path, class: "btn btn-primary shadow-sm" do %>
+      <i class="bi bi-plus-lg"></i> Upload New Image
+    <% end %>
+  </div>
+
+  <hr class="mb-5">
+
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+    <% @images.each do |image| %>
+      <div class="col">
+        <div class="card h-100 shadow-sm border-0">
+          
+          <% if image.picture.attached? %>
+            <%# We use a wrapper to ensure all images have the same height/aspect ratio %>
+            <div class="card-img-top overflow-hidden" style="height: 250px;">
+              <%= image_tag image.picture, class: "w-100 h-100 object-fit-cover transition-zoom" %>
+            </div>
+          <% else %>
+            <div class="bg-light d-flex align-items-center justify-content-center" style="height: 250px;">
+              <span class="text-muted italic">No image uploaded</span>
+            </div>
+          <% end %>
+
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title fw-semibold text-truncate"><%= image.name %></h5>
+            <div class="mt-auto d-flex justify-content-between">
+              <%= link_to 'View', image_path(image), class: "btn btn-sm btn-outline-secondary" %>
+              <span class="text-muted small align-self-center">
+                <%= image.created_at.strftime("%b %d, %Y") %>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<style>
+  /* Optional: Adds a nice zoom effect when hovering over the images */
+  .object-fit-cover { object-fit: cover; }
+  .transition-zoom { transition: transform 0.3s ease; }
+  .card:hover .transition-zoom { transform: scale(1.05); }
+</style>

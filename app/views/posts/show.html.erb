@@ -1,0 +1,5 @@
+<p><%= @post.title %></p>
+
+<% if @post.image.attached? %>
+  <%= image_tag @post.image, width: 300 %>
+<% end %>

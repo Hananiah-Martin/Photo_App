@@ -1,0 +1,42 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6 col-lg-5">
+      <div class="card shadow-sm border-0 rounded-3">
+        <div class="card-header bg-primary text-white py-3">
+          <h2 class="h4 mb-0 text-center fw-bold">Upload New Image</h2>
+        </div>
+        
+        <div class="card-body p-4">
+          <%= form_with model: @image, local: true do |f| %>
+            
+            <%# Name Field %>
+            <div class="mb-3">
+              <%= f.label :name, "Image Title", class: "form-label fw-semibold" %>
+              <%= f.text_field :name, 
+                              class: "form-control", 
+                              placeholder: "e.g. Sunset at the Beach",
+                              required: true %>
+            </div>
+            
+            <%# File Upload Field %>
+            <div class="mb-4">
+              <%= f.label :picture, "Select Image File", class: "form-label fw-semibold" %>
+              <%= f.file_field :picture, 
+                               class: "form-control", 
+                               accept: 'image/png,image/gif,image/jpeg',
+                               required: true %>
+              <div class="form-text">Accepted formats: JPG, PNG, GIF</div>
+            </div>
+            
+            <%# Submit and Back Buttons %>
+            <div class="d-grid gap-2">
+              <%= f.submit "Upload Image", class: "btn btn-primary btn-lg" %>
+              <%= link_to "Cancel", images_path, class: "btn btn-outline-secondary" %>
+            </div>
+
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
